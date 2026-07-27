@@ -306,6 +306,10 @@ canvas#revchart{display:block;width:100%;height:auto}
 .costcard ul{list-style:none}
 .costcard li{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;color:var(--txt-2);font-weight:300;padding:8px 0;border-top:1px solid var(--hair-soft)}
 .costcard li span{font-family:'GeistMono',monospace;color:var(--txt-3);white-space:nowrap}
+/* ===== go-to-market ===== */
+.gtmgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:820px){.gtmgrid{grid-template-columns:1fr}}
+.gnum{font-family:'GeistMono',monospace;font-size:12px;font-weight:500;color:var(--gold)}
 </style>
 
 <div class="grain"></div><div class="vign"></div>
@@ -354,9 +358,8 @@ canvas#revchart{display:block;width:100%;height:auto}
     <div class="statrow rv">
       <div class="stat"><div class="v">$<span data-count="6">0</span>M</div><div class="k">UAE revenue (AED 22M)</div></div>
       <div class="stat"><div class="v"><span data-count="200">0</span>+</div><div class="k">UAE offices served</div></div>
-      <div class="stat"><div class="v"><span data-count="15">0</span>K+</div><div class="k">employees supplied</div></div>
+      <div class="stat"><div class="v"><span data-count="40">0</span>K+</div><div class="k">employees supplied</div></div>
       <div class="stat"><div class="v"><span data-count="98">0</span>%</div><div class="k">client retention</div></div>
-      <div class="stat"><div class="v">4.<span data-count="7">0</span></div><div class="k">Google rating</div></div>
     </div>
     <div class="oppgrid rv">
       <div class="oppcard">
@@ -532,8 +535,34 @@ canvas#revchart{display:block;width:100%;height:auto}
 </section>
 <div class="divider"></div>
 
+<!-- ===================== GO-TO-MARKET ===================== -->
+<section id="s-gtm" data-lbl="Go-to-market" data-idx="08">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">Go-to-market · commercial strategy</div>
+      <h2>How we generate and close accounts.</h2>
+      <p class="lead">At launch, MHO Saudi runs the commercial engine already proven in the UAE: benchmarking as the wedge, the platform as the lock-in, Intersect's network as the door-opener. <span style="color:var(--txt-3)">— draft, for Alex to finalise.</span></p>
+    </div>
+    <div class="gtmgrid rv">
+      <div class="oppcard">
+        <div class="oh"><span class="gnum">01</span>&nbsp;Generate</div>
+        <p>Two engines. Intersect's enterprise BD network opens KSA's largest employers — a single group (INNOVO / ASGC scale) is <b>25–30k employees</b>. In parallel, the platform's benchmarking pulls inbound: prospects come to see how their spend compares.</p>
+      </div>
+      <div class="oppcard">
+        <div class="oh"><span class="gnum">02</span>&nbsp;Convert</div>
+        <p>Benchmarking is the wedge: we show a prospect their current office-supply spend against the MHO benchmark and quantify the saving (<b>UAE clients cut ≈22%</b>). The AI platform — real-time cost tracking, auto-reordering, eco-smart picks — then removes procurement friction before they sign.</p>
+      </div>
+      <div class="oppcard">
+        <div class="oh"><span class="gnum">03</span>&nbsp;Retain &amp; expand</div>
+        <p>Auto-reordering and live cost dashboards make the platform sticky (<b>98% UAE retention</b>). We land one office and expand across the group — the same land-and-expand that built the UAE book.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
 <!-- ===================== DEAL PATH ===================== -->
-<section id="s-path" data-lbl="Deal Path" data-idx="08">
+<section id="s-path" data-lbl="Deal Path" data-idx="09">
   <div class="wrap">
     <div class="sec-head rv"><div class="eyebrow">Deal-to-close · M−2 → M0</div><h2>Seven milestones to signature.</h2></div>
     <div class="path rv">
@@ -550,7 +579,7 @@ canvas#revchart{display:block;width:100%;height:auto}
 <div class="divider"></div>
 
 <!-- ===================== FOUNDER TRIGGERS ===================== -->
-<section id="s-founders" data-lbl="Founders" data-idx="09">
+<section id="s-founders" data-lbl="Founders" data-idx="10">
   <div class="wrap">
     <div class="sec-head rv"><div class="eyebrow">Founder economics · lean plan</div><h2>Founders are paid in cash from month one.</h2></div>
     <div class="trig rv">
@@ -563,7 +592,7 @@ canvas#revchart{display:block;width:100%;height:auto}
 </section>
 
 <!-- ===================== FOOTER ===================== -->
-<footer data-lbl="Close" data-idx="10">
+<footer data-lbl="Close" data-idx="11">
   <div class="footglow"></div>
   <div class="wrap">
     <div class="foot-grid">
