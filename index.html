@@ -312,6 +312,129 @@ canvas#revchart{display:block;width:100%;height:auto}
 .gnum{font-family:'GeistMono',monospace;font-size:12px;font-weight:500;color:var(--gold)}
 .status-pill.conf{color:var(--gold)}
 .status-pill.conf .d{background:var(--gold);box-shadow:0 0 0 4px var(--gold-dim)}
+
+/* =========================================================
+   RESPONSIVE — tablet & phone
+   Grid tracks default to minmax(auto,1fr), so a track can never
+   shrink below its content and the whole page is pushed wider
+   than the viewport. Every multi-column grid is pinned to
+   minmax(0,1fr) so tracks may actually shrink.
+   ========================================================= */
+.months,.steps4,.trcards,.costgrid,.revcards,.gtmgrid,.oppgrid,.trig,.fitgrid,.runway-grid,.rw-steps{grid-auto-columns:minmax(0,1fr)}
+.months{grid-template-columns:repeat(19,minmax(0,1fr))}
+.steps4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.trcards,.costgrid,.revcards,.gtmgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.trig{grid-template-columns:repeat(4,minmax(0,1fr))}
+.oppgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.fitgrid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)}
+.runway-grid{grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr)}
+.wf-row{grid-template-columns:minmax(0,1fr) auto}
+.pstep{grid-template-columns:auto minmax(0,1fr) auto}
+/* long unbroken strings (URLs, $ figures) must not push the page wide */
+p,li,h1,h2,h3,h4,.lead,.st .x,.pstep .mn,.oppcard p{overflow-wrap:break-word}
+
+@media(max-width:900px){
+  .runway-grid{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:880px){
+  .fitgrid{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:820px){
+  .trcards,.costgrid,.gtmgrid,.oppgrid{grid-template-columns:minmax(0,1fr)}
+  .trig{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* stacked cards wrap more, so the gate panel needs more room to open */
+  .trc.open .body{max-height:640px}
+}
+@media(max-width:760px){
+  .revcards{grid-template-columns:minmax(0,1fr)}
+  .steps4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* ---------- the pinned act: un-pin below 720px ----------
+   At 100svh the readout + 3 steps + the 440px chart no longer
+   fit, and .pin{overflow:hidden} would silently cut the chart.
+   On phones it becomes a normal section; runScroll() detects the
+   un-pinned case and drives the draw from section visibility. */
+@media(max-width:720px){
+  .act{height:auto}
+  .pin{position:static;height:auto;overflow:visible;display:block;padding:clamp(72px,10vh,120px) 0}
+  .rw-readout{font-size:clamp(38px,11vw,60px)}
+  .rw-steps{margin-top:24px}
+  .rw-step{padding:12px 0 12px 16px}
+  .rw-canvas-wrap{padding:20px 14px 14px}
+  .rw-progress{position:static;text-align:right;margin-top:8px}
+}
+
+@media(max-width:640px){
+  /* hero headline: 38px could not fit "not against the calendar."
+     in 350px and .l{overflow:hidden} was clipping it outright */
+  .hero h1{font-size:clamp(25px,7.6vw,42px);letter-spacing:-.03em}
+  .hero{padding:84px 0 64px}
+  .hero .sub{max-width:100%;font-size:15.5px;margin-top:22px}
+  .hero-figs{gap:22px 26px}
+  .hfig{min-width:104px}
+  .hfig .cap{max-width:150px;font-size:11.5px}
+  .hero-meta{font-size:9px;letter-spacing:.1em}
+  .wm{font-size:17px}
+  .eyebrow{font-size:9px;letter-spacing:.14em;gap:8px}
+  .eyebrow::before{width:14px}
+  .sec-head{margin-bottom:34px}
+  .sec-head .lead{font-size:15.5px}
+  section{padding:clamp(64px,9vh,110px) 0}
+  .oppcard,.trc{padding:20px}
+  .revcard,.costcard,.tg,.lane{padding:18px}
+  .rev-chartcard{padding:16px 14px 10px}
+  .statrow{gap:22px 24px;margin-bottom:34px;padding-top:20px}
+  .stat .k{max-width:132px;font-size:9px}
+  .assume,.disc{font-size:11.5px}
+  /* deal path: "Founders / Investor" was nowrap in a third column
+     and left ~150px for the milestone itself — stack it instead */
+  .pstep{grid-template-columns:auto minmax(0,1fr);gap:12px;padding:18px 0}
+  .pstep .own{grid-column:2;text-align:left;white-space:normal;padding-top:0;margin-top:9px}
+  .pstep .id{width:26px;font-size:11px}
+  .pstep .mn{font-size:15px}
+  .pstep.hl{margin-left:-12px;padding-left:12px}
+  /* tranche rail */
+  .months{font-size:8.5px;letter-spacing:0}
+  .months span:nth-child(even){display:none}
+  /* absolutely-positioned at 2%/20%/44% the three labels collided into
+     one unreadable string — lay them out as a plain 3-up legend instead */
+  .trlabels{position:static;height:auto;display:flex;justify-content:space-between;gap:8px;margin-top:12px}
+  .trlabels span,.trlabels span.l0{position:static;transform:none;white-space:normal;font-size:8px;letter-spacing:.05em;line-height:1.35;flex:1 1 0;text-align:center}
+  .trlabels span:first-child{text-align:left}
+  .trlabels span:last-child{text-align:right}
+  .trc .amt{font-size:27px}
+  .trc h3{font-size:19px}
+  /* waterfall */
+  .wf-bar,.wf-lab{height:58px}
+  .wf-lab{padding-left:14px}
+  .wf-lab .t{font-size:12.5px}
+  .wf-lab .s{font-size:10.5px;line-height:1.35}
+  .wf-row{gap:12px}
+  .wf-val{font-size:13px}
+  .wf-row.fit .wf-val{font-size:14.5px}
+  .fitnote{font-size:13.5px}
+  /* footer */
+  .foot-grid{flex-direction:column;align-items:flex-start;gap:22px}
+  .foot-grid .meta{text-align:left;font-size:10px;line-height:1.9}
+  footer{padding:48px 0 58px}
+}
+
+@media(max-width:520px){
+  /* two 160px columns made every step a tall narrow ribbon */
+  .steps4{grid-template-columns:minmax(0,1fr)}
+  .trig{grid-template-columns:minmax(0,1fr)}
+  .lane .lh{align-items:flex-start;flex-direction:column;gap:9px}
+  .costcard li{font-size:12px}
+}
+
+/* touch: no hover, no custom cursor, real tap targets */
+@media(hover:none),(pointer:coarse){
+  .toggle{width:44px;height:44px;top:14px;right:14px}
+  .trc .expand{cursor:pointer;padding:6px 0}
+  .trc:hover,.tg:hover{transform:none}
+  a,button,.trc{-webkit-tap-highlight-color:rgba(251,178,27,.18)}
+}
 </style>
 
 <div class="grain"></div><div class="vign"></div>
@@ -731,10 +854,20 @@ function drawRunway(p){
 }
 /* scroll driver for the pinned act */
 const act=document.getElementById('s-runway');
+const pinEl=act.querySelector('.pin');
 function runScroll(){
-  const r=act.getBoundingClientRect(),total=act.offsetHeight-innerHeight;
-  const p=Math.min(1,Math.max(0,(-r.top)/total));
-  drawRunway(p);
+  const r=act.getBoundingClientRect();
+  /* below 720px the act is un-pinned (see the responsive block), so the
+     sticky-scrub math no longer applies. Detect the real state from the
+     computed position rather than guessing from heights, and scrub on how
+     far the section has travelled up the viewport instead. */
+  if(getComputedStyle(pinEl).position!=='sticky'){
+    const span=Math.max(1,innerHeight*.6+r.height);
+    drawRunway(Math.min(1,Math.max(0,(innerHeight-r.top)/span)));
+    return;
+  }
+  const total=Math.max(1,act.offsetHeight-innerHeight);
+  drawRunway(Math.min(1,Math.max(0,(-r.top)/total)));
 }
 addEventListener('scroll',runScroll,{passive:true});
 addEventListener('resize',()=>drawRunway(lastP));
