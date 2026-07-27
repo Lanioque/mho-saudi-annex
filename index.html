@@ -846,7 +846,7 @@ function drawRunway(p){
   const ex=expAt(month);
   rwNum.textContent='$'+Math.round(ex).toLocaleString('en-US');rwNum.style.color=gold;
   rwLbl.textContent=`Cumulative exposure · Month ${Math.round(month)}`;
-  rwProgTxt.textContent=p>=.98?'FITS · $97K HEADROOM ▸':`FUND ${Math.round(p*100)}%`;
+  rwProgTxt.textContent=p>=.98?'FITS · $106K HEADROOM ▸':`FUND ${Math.round(p*100)}%`;
   /* active step */
   let act=0;if(p>.34)act=1;if(p>.7)act=2;
   rwSteps.forEach((s,i)=>s.classList.toggle('on',i<=act));
